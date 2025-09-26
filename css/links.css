@@ -1,0 +1,54 @@
+.links-interes {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  background: #0d1b2a;
+  color: #F9FAFA;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #F9FAFA;
+  margin-bottom: 1.2rem;
+}
+
+.card ul {
+  list-style: none; /* sacamos bullets */
+  padding-left: 0;
+}
+
+.card li {
+  position: relative;
+  margin: 0.8rem 0;
+  padding-left: 1.8rem; /* espacio para la estrella */
+}
+
+.card li::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  color: gold;
+  font-size: 1.2rem;
+}
+
+.card a {
+  text-decoration: none;
+  color: #0073e6;
+  font-weight: 500;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}

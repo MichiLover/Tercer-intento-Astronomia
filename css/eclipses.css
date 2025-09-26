@@ -1,0 +1,219 @@
+/*Este css es de la pagina eclipse.html*/
+
+.cards-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #f5c518;
+    margin-bottom: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.cards-row {
+    display: flex;
+    flex-wrap: wrap;           /* Permite que bajen en pantallas chicas */
+    justify-content: center;   /* Centrado horizontal */
+    gap: 20px;                 /* Espacio entre cards */
+    margin-bottom: 50px;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    perspective: 1000px;
+    border: 1px solid #f5c518;  /* Color dorado */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: rgb(3,35,54); /* mismo color oscuro que el back */
+}
+
+.card .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.6s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.card .front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .front h3 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.card .back {
+    background: rgb(3, 35, 54);
+    color: #f3f3f3;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+}
+
+.card:hover .front {
+    transform: rotateY(180deg);
+}
+
+.card:hover .back {
+    transform: rotateY(360deg);
+}
+
+
+/*permite hacer el giro en dispositivos táctiles*/
+
+.card {
+  cursor: pointer;
+  perspective: 1000px; /* necesario para efecto 3D */
+  width: 200px; /* ajustá según tus necesidades */
+  height: 300px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* al hacer clic se gira la card */
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* front y back */
+.card .face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+}
+
+/* la parte trasera empieza girada 180° */
+.card .back {
+  transform: rotateY(180deg);
+}
+
+
+/* Responsivo */
+/* ----------------- Responsivo de las cards según tus breakpoints ----------------- */
+
+/* Monitores XL (1200px a 1399px) y XXL (>=1400px) */
+@media (min-width: 1200px) {
+    .card {
+        width: 300px; /* 3 cards por fila */
+    }
+}
+
+/* Monitores L (992px a 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .card {
+        width: 26%;       /* un poco más angostas */
+        min-width: 240px;
+        height: 270px;    /* más bajas que las 350px por defecto */
+    }
+}
+
+/* Monitores M (768px a 991px) */
+@media (min-width: 768px) and (max-width: 794px){
+    .card {
+        width: 20%;       /* un poco más angostas */
+        min-width: 210px;
+        height: 210px;    /* más bajas que las 350px por defecto */
+    }
+    
+
+}
+@media (min-width: 795px) and (max-width: 991px) {
+    .card {
+        width: 22%;       /* un poco más angostas */
+        min-width: 220px;
+        height: 220px;    /* más bajas que las 350px por defecto */
+    }
+    
+}
+
+
+/* Monitores S (576px a 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .card {
+        width: 55%; /* 2 cards por fila */
+        min-width: 240px;
+        height: 180px;
+    }
+}
+
+/* Monitores XS (<576px) */
+@media (max-width: 575px) {
+    .cards-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 75%;          /* un poco más pequeña que antes */
+        max-width: 210px;    /* opcional: no que se estire demasiado */
+        height: auto;        /* altura automática para mantener proporción */
+        aspect-ratio: 6/7;   /* mantiene proporción de la card */
+    }
+
+    .card .front img {
+        height: 100%;
+        object-fit: cover;   /* imagen ajustada al tamaño de la card */
+    }
+
+    .card .front h3 {
+        font-size: 1rem;     /* un poco más pequeño */
+    }
+
+    .touch-hint {
+        font-size: 0.8rem;   /* más pequeño para no ocupar tanto espacio */
+    }
+}
+
+
+/* Mensaje “Toca para girar” en móviles */
+.touch-hint {
+    display: none; /* por defecto */
+    position: absolute;
+    top: 10px;      /* arriba de la card */
+    width: 100%;
+    text-align: center;
+    color: #f5c518; /* dorado */
+    font-size: 0.9rem;
+    font-family: 'Oswald', sans-serif;
+    z-index: 2;     /* sobre la imagen */
+}
+
+@media (max-width: 767px) {
+    .touch-hint {
+        display: block; /* solo en móviles */
+    }
+}
+

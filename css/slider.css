@@ -1,0 +1,443 @@
+/* este css modifica solo el slider que se encuentra en el index*/
+
+/*Esto sirve solo para moviles, asi no se desvia al costado*/
+/*Anti scroll lateral*/
+
+.container {
+  position: relative;
+  width: 100%;         /* se adapta al ancho disponible */
+  max-width: 95%;   /* no crece más de 1000px en pantallas grandes */
+  background: transparent;
+  border-radius: 15px;
+  box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+}
+
+/* Contenedor exclusivo del slider */
+.slider-wrapper {
+    width: 100%;
+    overflow-x: hidden;  /* bloquea scroll lateral solo para el slider */
+    position: relative;
+    touch-action: pan-y; /* permite scroll vertical en móviles */
+}
+
+
+.container .slide {
+    position: relative;
+    width: 100%;
+    height: 600px; /* mantiene el tamaño del slider */
+}
+
+.container .slide .item{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.slide .item:nth-child(1),
+.slide .item:nth-child(2){
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slide .item:nth-child(3){
+    left: 50%;
+}
+.slide .item:nth-child(4){
+    left: calc(50% + 220px);
+}
+.slide .item:nth-child(5){
+    left: calc(50% + 440px);
+}
+
+/* here n = 0, 1, 2, 3,... */
+.slide .item:nth-child(n + 6){
+    left: calc(50% + 660px);
+    opacity: 0;
+}
+
+.item .content{
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 300px;
+    text-align: left;
+    color: #F9FAFA;
+    transform: translate(0, -50%);
+    font-family: system-ui;
+    display: none;
+}
+
+.slide .item:nth-child(2) .content{
+    display: block;
+}
+
+
+.content .name {
+    font-size: 48px;       /* más grande */
+    color: #F5C518;        /* dorado */
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'Oswald','sans-serif';
+    opacity: 0;
+    animation: animate 1s ease-in-out 1 forwards;
+    white-space: pre-line;       /* permite saltos de línea automáticos */
+    word-break: break-word;    /* corta palabras muy largas */
+    overflow-wrap: break-word; /* soporte extra para navegadores */
+
+}
+
+.content .fecha {
+    font-size: 20px;
+    color: #f9fafa;
+    margin-bottom: 8px;
+    font-family: 'Roboto', 'sans-serif';
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.3s 1 forwards;
+}
+
+.content .descripcion {
+    font-size: 16px;
+    color: #f9fafa;
+    margin-bottom: 20px;
+    font-family: 'Roboto', 'sans-serif';
+    line-height: 1.4;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.5s 1 forwards;
+
+    white-space: pre-line;   /* respeta saltos de línea del sheet */
+    word-break: break-word;   /* corta palabras largas que sobresalgan */
+}
+
+
+.content .ver-mas {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #F5C518; /* amarillo/dorado */
+    color: #212529;              /* texto negro */
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.7s 1 forwards;
+    margin-top: 12px;
+}
+
+.content .ver-mas:hover {
+    background-color: #212529;   /* fondo negro */
+    color: #F5C518;           /* texto amarillo/dorado */
+}
+
+
+
+.content button{
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+}
+
+@keyframes animate {
+    from{
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+.button{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+}
+
+.button button{
+    width: 40px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    border: 1px solid #212529;
+    transition: 0.3s;
+    background: #212529;
+    color: #f9fafa
+}
+
+.button button:hover{
+    background: #F5C518;
+    color: #F9FAFA;
+}
+
+
+
+/* ================== XS (Extra Small) ================== */
+/* 0 – 575px */
+@media (max-width: 575px) {
+
+  .container .slide {
+    height: 300px; /* un poco más bajo para móvil */
+    width: 420px;
+  }
+
+  .container .slide .item {
+    width: 120px;      /* más compacta */
+    height: 220px;     /* proporcional */
+    border-radius: 10px; /* más redondeada pero menos grande */
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .slide .item:nth-child(1),
+  .slide .item:nth-child(2) {
+    width: 90%;        /* sigue siendo grande, pero no ocupa 100% */
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 10px;
+  }
+
+  .slide .item:nth-child(3) {
+    left: 45%;        /* acercamos más al centro */
+  }
+
+  .slide .item:nth-child(4) {
+    left: calc(45% + 160px); /* ajustamos la distancia horizontal */
+  }
+
+  .slide .item:nth-child(5) {
+    left: calc(45% + 320px);
+  }
+
+  .slide .item:nth-child(n + 6) {
+    left: calc(45% + 480px);
+    opacity: 0;       /* mantener invisibles */
+  }
+
+  .ver-mas {
+    width: 35%;           /* ocupa menos espacio que full width */
+    font-size: 0.9rem;   /* texto más compacto */
+    padding: 4px 8px;    /* menos padding */
+    border-radius: 2px;   /* más pequeño */
+    font-style: bold;
+  }
+  .item .content {
+    left: 10px;  /* antes 15px, ahora un poco más a la izquierda */
+    width: 85%;
+    text-align: left;
+  }
+
+  .content .name {
+    font-size: 28px;
+    text-align: left;
+  }
+  .content .fecha {
+    font-size: 14px;
+  }
+
+}
+
+
+
+/* ================== S (Small) ================== */
+/*esto pertenece al tamaño S pero tiene un pequeño arreglo en esta configuracion*/
+@media (min-width: 577px) and (max-width: 672px) {
+  .container .slide {
+    height: 500px;
+  }
+    .item .content {
+    left: 10px;  /* antes 15px, ahora un poco más a la izquierda */
+    width: 85%;
+
+  }
+  .content .name {
+    font-size: 36px;
+    text-align: left;
+  }
+  .content .fecha {
+    font-size: 18px;
+    
+  }
+  .content .descripcion {
+    font-size: 14px;               /* tamaño legible */
+    line-height: 1.4;              /* separación de líneas */
+    width: 200px;                   /* ancho fijo tipo recuadro */
+    max-width: 65%;                 /* nunca exceda el contenedor */
+    white-space: pre-line;          /* respeta saltos de línea del sheet */
+    word-break: break-word;         /* corta palabras largas */
+    overflow-wrap: break-word;      /* seguro contra textos muy largos */
+    margin: 5px 0;                  /* separación */
+    text-align: left;
+  }
+  }
+
+/* Tamaño S (Small) 576px – 767px */
+@media (min-width: 576px) and (max-width: 767px) {
+
+  .container .slide {
+    height: 550px;
+  }
+  .content .name {
+    font-size: 36px;
+    text-align: left;
+  }
+  .content .fecha {
+    font-size: 18px;
+    
+  }
+  .content .descripcion {
+    font-size: 14px;               /* tamaño legible */
+    line-height: 1.4;              /* separación de líneas */
+    width: 200px;                   /* ancho fijo tipo recuadro */
+    max-width: 65%;                 /* nunca exceda el contenedor */
+    white-space: pre-line;          /* respeta saltos de línea del sheet */
+    word-break: break-word;         /* corta palabras largas */
+    overflow-wrap: break-word;      /* seguro contra textos muy largos */
+    margin: 5px 0;                  /* separación */
+    text-align: left;
+  }
+}
+
+
+
+
+
+
+/* ================== M (Medium) ================== */
+
+/*esto pertenece al tamaño M pero tiene un pequeño arreglo en esta configuracion*/
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .container .slide {
+    height: 450px;
+  }
+    .item .content {
+    left: 80px;  
+    width: 80%;
+
+  }
+  .content .name {
+    font-size: 32px;
+    text-align: left;
+  }
+  .content .fecha {
+    font-size: 16px;
+    
+  }
+  .content .descripcion {
+    font-size: 12px;               /* tamaño legible */
+    line-height: 1.4;              /* separación de líneas */
+    width: 230px;                   /* ancho fijo tipo recuadro */
+    max-width: 65%;                 /* nunca exceda el contenedor */
+    white-space: pre-line;          /* respeta saltos de línea del sheet */
+    word-break: break-word;         /* corta palabras largas */
+    overflow-wrap: break-word;      /* seguro contra textos muy largos */
+    margin: 5px 0;                  /* separación */
+    text-align: left;
+  }
+  }
+
+
+  @media (min-width: 901px) and (max-width: 991px) {
+    .container .slide {
+      height: 550px;
+    }
+    .content .name {
+      font-size: 36px;
+    }
+    .content .fecha {
+      font-size: 18px;
+    }
+    .content .descripcion {
+      font-size: 16px;
+    }
+}
+
+
+/* ================== L (Large) ================== */
+
+@media (min-width: 992px) and (max-width: 1099px) {
+  .container .slide {
+    height: 500px;
+    min-height: 70vh;   /* ocupa 70% de la altura de la ventana */
+    max-height: 90vh;   /* límite para que no se dispare demasiado */
+  }
+
+  .content .name {
+    font-size: 2rem;  /* escala según configuración base del navegador */
+  }
+
+  .content .fecha {
+    font-size: 1rem;
+  }
+
+  .content .descripcion {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* Monitores un poco más grandes (1100–1199) */
+@media (min-width: 1100px) and (max-width: 1199px) {
+  .container .slide {
+    height: 650px;
+  }
+}
+
+
+/* ================== XL (Extra Large) ================== */
+/* 1200px – 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .container .slide {
+    height: 600px;
+  }
+  .content .name {
+    font-size: 40px;
+  }
+  .content .fecha {
+    font-size: 20px;
+  }
+  .content .descripcion {
+    font-size: 18px;
+  }
+}
+
+/* ================== XXL (Extra Extra Large) ================== */
+/* 1400px en adelante */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1200px;
+  }
+  .container .slide {
+    height: 650px;
+  }
+  .content .name {
+    font-size: 48px;
+  }
+  .content .fecha {
+    font-size: 22px;
+  }
+  .content .descripcion {
+    font-size: 20px;
+  }
+}
